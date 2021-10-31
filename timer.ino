@@ -7,6 +7,7 @@ const int F = 9;
 const int G = 10;
 
 const int secondsUnitDigit = 13, secondsTensDigit = 3, minutesUnitDigit = 2;
+const int buzzer = A0;
 
 int second, secondStore = 0;
 int minute, minuteStore = 0;
@@ -36,6 +37,7 @@ void setup()
   pinMode(1, INPUT_PULLUP);
   pinMode(11, INPUT_PULLUP);
   pinMode(12, INPUT_PULLUP);
+  pinMode(buzzer, OUTPUT);
 }
 
 void loop()
@@ -140,12 +142,16 @@ void blink() {
     digitalWrite(minutesUnitDigit, LOW);
     digitalWrite(secondsTensDigit, LOW);
     digitalWrite(secondsUnitDigit, LOW);
+    analogWrite(buzzer, 0);
     delay(125);
     digitalWrite(minutesUnitDigit, HIGH);
     digitalWrite(secondsTensDigit, HIGH);
     digitalWrite(secondsUnitDigit, HIGH);
+    analogWrite(buzzer, 1024);
     delay(125);
   }
+
+  analogWrite(buzzer, 0);
 }
 
 void displayMinutesUnitDigit(int minutesUnit)
