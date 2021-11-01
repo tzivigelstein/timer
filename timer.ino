@@ -58,7 +58,12 @@ void checkPlus() {
   if (plusButtonState != currentPlusButtonState) {   //Check if the button state has changed
     if (plusButtonState == LOW && (millis() - lastPlusButton) > 100 || lastPlusButton == HIGH) {
       lastPlusButton = millis();
-      second += 10;
+      if (second >= 50 && minute == 9) {
+        second++;
+      } else {
+        second += 10;
+      }
+
       if (second > 59) {
         second = 0;
         minute ++;
